@@ -1,0 +1,46 @@
+<h2>Give us a feedback</h2>
+
+<form #feedbackForm="ngForm" (ngSubmit)="addFeedback()" autocomplete="off">
+    <input type="hidden" class="form-control" name="creatorId" 
+        [(ngModel)]="model.creatorId">
+   <div class="form-group">
+        <select name="solutions" class="form-control" [(ngModel)]="model.solution">
+            <option value="air" selected>Air freight</option>
+            <option value="rail">Rail freight</option>
+            <option value="road">Road freight</option>
+            <option value="sea">Sea freight</option>
+        </select>
+   </div>
+    <div class="form-group">
+        <input type="number" class="form-control" name="value" 
+        [(ngModel)]="model.value">
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" name="text" [(ngModel)]="model.text" placeholder="Share your thoughts with us..."></textarea>
+        
+    </div>
+
+    <div class="form-group text-center">
+        <button class="btn btn-warning mr-2" type="submit">Post feedback</button>
+      </div>
+</form>
+
+
+<div *ngFor="let fb of feedbacks" class="card feedback-card mb-3">
+    <div class="card-header">
+        <div class="row">
+            <div class="col" style="text-transform: capitalize">
+                {{(getUserByCreatorId(fb.creatorId))}}
+            </div>
+            <div class="col" style="text-align:right">
+                {{fb.date}}
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>{{fb.text}}</p>
+            <footer class="blockquote-footer">Gave <cite title="Source Title">{{fb.value}} stars on {{fb.solution}} freight.</cite></footer>
+        </blockquote>
+    </div>
+</div>

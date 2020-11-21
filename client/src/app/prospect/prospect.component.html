@@ -1,0 +1,148 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <form #prospectForm="ngForm" (ngSubmit)="addProspect()" autocomplete="off">
+                <div *ngIf="prospectMode===0">
+                    <input type="hidden" class="form-control" name="creatorId" 
+                    [(ngModel)]="model.creatorId">
+                    <div class="container prospect-header">
+                        <h1>From</h1>
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label">City</label>
+                        <input type="text" class="form-control" name="fromCity" 
+                        [(ngModel)]="model.fromCity">
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label">Zip</label>
+                        <input type="text" class="form-control" name="fromZip" 
+                        [(ngModel)]="model.fromZip">
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label">Country</label>
+                        <select name="fromCountry" class="form-control" [(ngModel)]="model.fromCountry">
+                            <option value="albania" selected>Albania</option>
+                            <option value="hungary">Hungary</option>
+                            <option value="italy">Italy</option>
+                            <option value="lithuania">Lithuania</option>
+                        </select>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="btn-group">
+                            <button class="btn btn-back" (click)="incProspectMode()">Next</button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div *ngIf="prospectMode===1">
+                    <div class="container prospect-header">
+                        <h1>To</h1>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">City</label>
+                        <input type="text" class="form-control" name="toCity" 
+                        [(ngModel)]="model.toCity">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Zip</label>
+                        <input type="text" class="form-control" name="toZip" 
+                        [(ngModel)]="model.toZip">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Country</label>
+                        <select name="toCountry" class="form-control" [(ngModel)]="model.toCountry">
+                            <option value="albania" selected>Albania</option>
+                            <option value="hungary">Hungary</option>
+                            <option value="italy">Italy</option>
+                            <option value="lithuania">Lithuania</option>
+                        </select>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="btn-group">
+                            <button class="btn btn-back" (click)="decProspectMode()" >Back</button>
+                            <button class="btn btn-back" (click)="incProspectMode()">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="prospectMode===2">
+                    <div class="container prospect-header">
+                        <h1>Details</h1>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Type of solution</label>
+                        <select name="solutions" class="form-control" [(ngModel)]="model.solution">
+                            <option value="air" selected>Air</option>
+                            <option value="rail">Rail</option>
+                            <option value="road">Road</option>
+                            <option value="sea">Sea</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Your needs</label>
+                        <textarea class="form-control" name="text" [(ngModel)]="model.text" placeholder="Share your thoughts with us..."></textarea>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="btn-group">
+                            <button class="btn btn-back" (click)="decProspectMode()" >Back</button>
+                            <button class="btn btn-back" (click)="incProspectMode()">Next</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="prospectMode===3">
+                    <div class="container prospect-header">
+                        <h1>Your company</h1>
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label">Name</label>
+                        <input type="text" class="form-control" name="companyName" 
+                        [(ngModel)]="model.companyName">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Country</label>
+                            <select name="companyCountry" class="form-control" [(ngModel)]="model.companyCountry">
+                                <option value="air" selected>Albania</option>
+                                <option value="rail">Hungary</option>
+                                <option value="road">Italy</option>
+                                <option value="sea">Lithuania</option>
+                            </select>
+                        </div>
+                    <div class="form-group">
+                    <label class="control-label">Zipcode</label>
+                        <input type="text" class="form-control" name="companyZip" 
+                        [(ngModel)]="model.companyZip">
+                    </div>
+                    <div class="form-group">
+                    <label class="control-label">Number of employees</label>
+                        <input type="number" class="form-control" name="numberOfEmployees" 
+                        [(ngModel)]="model.numberOfEmployees">
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="btn-group">
+                            <button class="btn btn-back" (click)="decProspectMode()" >Back</button>
+                            <button class="btn btn-back" type="submit">Done</button>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                          <div class="col col-lg-2">
+                            <a class="btn btn-back " (click)="decProspectMode()">
+                                <h3>Back</h3>
+                            </a>
+                          </div>
+                          <div class="col col-lg-2">
+                            <button class="btn btn-back" type="submit">
+                                <h3>Done</h3>
+                            </button>
+                          </div>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="form-group text-center">
+                        <button class="btn btn-warning mr-2" type="submit">Done</button>
+                    </div>
+                    -->
+                </div>
+             </form>            
+        </div>
+    </div>
+</div>

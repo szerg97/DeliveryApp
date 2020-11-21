@@ -1,0 +1,15 @@
+.btn-back{
+    text-align: center;
+    background-color: #ffcc00;
+}
+.btn-back:hover{
+    background-color: #ffcc00;
+    opacity: 0.5;
+}
+.prospect-header{
+    color: white;
+    background-color: #ffcc00;
+    height: 4rem;
+    text-align: center;
+    margin-bottom: 3rem;
+}

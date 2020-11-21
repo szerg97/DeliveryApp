@@ -1,0 +1,6 @@
+.site-header{
+    background-color: #303030;
+}
+.dropdown-toggle, .dropdown-item{
+    cursor: pointer;
+}

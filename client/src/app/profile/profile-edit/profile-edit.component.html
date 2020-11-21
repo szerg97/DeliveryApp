@@ -1,0 +1,58 @@
+<div class="row"  *ngIf="user">
+    <div class="col-4">
+        <h1>Your profile</h1>
+    </div>
+    <div class="col-8">
+        <div class="alert alert-info" *ngIf="editForm.dirty">
+            <strong>Information: </strong>You have made changes. Any unsaved changes will be lost.
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <p>picture goes here</p>
+            <div class="card-body">
+                <div>
+                    <h2><strong class="text-capitalize">{{user.userName}}</strong></h2>
+                </div>
+                <div>
+                    <strong>First name:</strong>
+                    <p>{{user.firstName}}</p>
+                </div>
+                <div>
+                    <strong>Last name:</strong>
+                    <p>{{user.lastName}}</p>
+                </div>
+                <div>
+                    <strong>Gender:</strong>
+                    <p>{{user.gender}}</p>
+                </div>
+                <div>
+                    <strong>Date of birth:</strong>
+                    <p>{{user.dateOfBirth | date}}</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <form id="editForm" #editForm = "ngForm" (ngSubmit)="updateUser()">
+            <div form-formControl>
+                <label>First name</label>
+                <input class="form-control" name="firstName" type="text"
+                [(ngModel)]="user.firstName" >
+            </div>
+            <div form-formControl>
+                <label>Last name</label>
+                <input class="form-control" name="lastName" type="text"
+                [(ngModel)]="user.lastName" >
+            </div>
+            <div form-formControl>
+                <label>Gender</label>
+                <input class="form-control" name="gender" type="text"
+                [(ngModel)]="user.gender" >
+            </div>
+        </form>
+    </div>
+</div>
