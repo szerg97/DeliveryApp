@@ -19,6 +19,7 @@ namespace API.Models
         public string ToZip { get; set; }
         public string Solution { get; set; }
         public string Text { get; set; }
+        public string Status { get; set; } = "Pending";
         public DateTime Registered { get; set; }
 
         [ForeignKey("Creator")]

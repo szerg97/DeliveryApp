@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -59,6 +60,21 @@ namespace API.Controllers
             var offerToReturn = _mapper.Map<OfferDto>(offer);
 
             return Ok(offerToReturn);
+        }
+
+        [Authorize]
+        [HttpPut]
+        public async Task<ActionResult> UpdateOffer(OfferUpdateDto dto)
+        {
+            var offer = await _offerRepository.GetOfferByIdAsync(dto.OfferId);
+
+            _mapper.Map(dto, offer);
+
+            _offerRepository.Update(offer);
+
+            if (await _offerRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("Failed to update offer");
         }
     }
 }

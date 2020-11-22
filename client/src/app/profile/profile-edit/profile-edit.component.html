@@ -32,26 +32,30 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Save Changes</button>
+                <button [disabled]="!editForm.dirty" form="editForm" (click)="updateUser()" class="btn btn-success btn-block">Save Changes</button>
             </div>
         </div>
     </div>
     <div class="col-8">
-        <form id="editForm" #editForm = "ngForm" (ngSubmit)="updateUser()">
-            <div form-formControl>
+        <form id="editForm" #editForm = "ngForm">
+            <div clas="form-group">
                 <label>First name</label>
                 <input class="form-control" name="firstName" type="text"
                 [(ngModel)]="user.firstName" >
             </div>
-            <div form-formControl>
+            <div clas="form-group">
                 <label>Last name</label>
                 <input class="form-control" name="lastName" type="text"
                 [(ngModel)]="user.lastName" >
             </div>
-            <div form-formControl>
+            <div clas="form-group">
                 <label>Gender</label>
-                <input class="form-control" name="gender" type="text"
-                [(ngModel)]="user.gender" >
+                <div class="form-group">
+                    <select name="gender" class="form-control" [(ngModel)]="user.gender">
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                    </select>
+                </div>
             </div>
         </form>
     </div>

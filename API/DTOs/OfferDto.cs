@@ -19,5 +19,6 @@ namespace API.DTOs
         public DateTime Registered { get; set; }
         public string CreatorName { get; set; }
         public string CompanyName { get; set; }
+        public string Status { get; set; }
     }
 }

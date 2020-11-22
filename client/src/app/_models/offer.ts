@@ -12,4 +12,5 @@ export interface Offer{
     toCity: number;
     toZip: number;
     toCountry: number;
+    status: string;
 }

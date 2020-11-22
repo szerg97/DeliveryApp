@@ -20,5 +20,6 @@ namespace API.DTOs
         public string CompanyZip { get; set; }
         public int NumberOfEmployees { get; set; }
         public string CreatorId { get; set; }
+        public string Status { get; set; }
     }
 }

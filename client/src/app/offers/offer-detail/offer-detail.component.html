@@ -1,44 +1,58 @@
-<div *ngIf="offer" class="container mb-2">
-    <div class="row justify-content-center">
-        <div class="card text-center col-8">
-            <div class="card-body">
-                <h4 class="card-title text-warning">Your needs</h4>
-                <p class="card-text">{{offer.text}}</p>
-                
-            </div>
-            <div class="card-header">
-            <h5 class="text-warning">About you</h5>
-            </div>
+    <div *ngIf="offer" class="container mb-2">
+        <div class="row justify-content-center">
+            <div class="card text-center col-8">
+                <div class="card-body">
+                    <h4 class="card-title text-warning">Your needs</h4>
+                    <p class="card-text">{{offer.text}}</p>
+                    <p *ngIf="offer.status==='Pending'" class="card-text">Status: <span style="color: goldenrod; font-weight: bold;" >{{offer.status}}</span></p>
+                    <p *ngIf="offer.status==='Completed'" class="card-text">Status: <span  style="color: green; font-weight: bold;">{{offer.status}}</span></p>
+                    <div *ngIf="this.currentUser.role==='Admin'">
+                        <p>Set status:</p>
+                        <form id="editForm" #editForm="ngForm">
+                            <div class="form-group">
+                                <select name="values" class="form-control" [(ngModel)]="offer.status">
+                                    <option value="Pending">Pending</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-outline-warning" routerLink='/offers' type="button" (click)="updateOffer()">Save changes</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card-header">
+                <h5 class="text-warning">About you</h5>
+                </div>
+                    <ul class="list-group">
+                    <li class="list-group-item">{{offer.creatorName}}</li>
+                    <li class="list-group-item">{{offer.companyName}}</li>
+                </ul>
+                <div class="card-header">
+                    <h5 class="text-warning">From</h5>
+                </div>
                 <ul class="list-group">
-                <li class="list-group-item">{{offer.creatorName}}</li>
-                <li class="list-group-item">{{offer.companyName}}</li>
-            </ul>
-            <div class="card-header">
-                <h5 class="text-warning">From</h5>
-            </div>
-            <ul class="list-group">
-                <li class="list-group-item">{{offer.fromCity}}</li>
-                <li class="list-group-item">{{offer.fromZip}}</li>
-                <li class="list-group-item">{{offer.fromCountry | titlecase}}</li>
-            </ul>
-            <div class="card-header">
-                <h5 class="text-warning">To</h5>
-            </div>
-            <ul class="list-group">
-                <li class="list-group-item">{{offer.toCity}}</li>
-                <li class="list-group-item">{{offer.toZip}}</li>
-                <li class="list-group-item">{{offer.toCountry | titlecase}}</li>
-            </ul>
-            <div class="card-header">
-                <h5 class="text-warning">With</h5>
-            </div>
-            <ul class="list-group">
-                <li class="list-group-item">{{offer.solution | titlecase}} freight</li>
-            </ul>
-            <div class="card-footer text-muted">
-              {{offer.registered | date}}
-            </div>
-            <button class="btn btn-outline-warning" routerLink='/offers'>Back to offers</button>
-          </div>
+                    <li class="list-group-item">{{offer.fromCity}}</li>
+                    <li class="list-group-item">{{offer.fromZip}}</li>
+                    <li class="list-group-item">{{offer.fromCountry | titlecase}}</li>
+                </ul>
+                <div class="card-header">
+                    <h5 class="text-warning">To</h5>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">{{offer.toCity}}</li>
+                    <li class="list-group-item">{{offer.toZip}}</li>
+                    <li class="list-group-item">{{offer.toCountry | titlecase}}</li>
+                </ul>
+                <div class="card-header">
+                    <h5 class="text-warning">With</h5>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">{{offer.solution | titlecase}} freight</li>
+                </ul>
+                <div class="card-footer text-muted">
+                  {{offer.registered | date}}
+                </div>
+                
+                <button class="btn btn-outline-warning" routerLink='/offers'>Back to offers</button>
+              </div>
+        </div>
     </div>
-</div>
