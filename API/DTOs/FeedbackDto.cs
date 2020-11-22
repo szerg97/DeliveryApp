@@ -9,6 +9,7 @@ namespace API.DTOs
     public class FeedbackDto
     {
         public string Text { get; set; }
+        [Range(1, 5)]
         public int Value { get; set; }
         public string Solution { get; set; }
         public string CreatorId { get; set; }

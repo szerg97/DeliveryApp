@@ -12,8 +12,13 @@
         </select>
    </div>
     <div class="form-group">
-        <input type="number" class="form-control" name="value" 
-        [(ngModel)]="model.value">
+        <select name="values" class="form-control" [(ngModel)]="model.value">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
     </div>
     <div class="form-group">
         <textarea class="form-control" name="text" [(ngModel)]="model.text" placeholder="Share your thoughts with us..."></textarea>
@@ -33,7 +38,7 @@
                 {{(getUserByCreatorId(fb.creatorId))}}
             </div>
             <div class="col" style="text-align:right">
-                {{fb.date}}
+                {{fb.date | date:'MMM dd, yyyy hh:mm'}}
             </div>
         </div>
     </div>

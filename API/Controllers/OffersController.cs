@@ -1,5 +1,6 @@
 ﻿using API.Data;
 using API.DTOs;
+using API.Extensions;
 using API.Interfaces;
 using API.Models;
 using AutoMapper;
@@ -30,11 +31,23 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OfferDto>>> GetOffers()
         {
-            var offers = await _offerRepository.GetOffersAsync();
+            var user = User;
 
-            var offersToReturn = _mapper.Map<IEnumerable<OfferDto>>(offers);
+            if (user.IsInRole("Admin"))
+            {
+                var offers = await _offerRepository.GetOffersAsync();
 
-            return Ok(offersToReturn);
+                var offersToReturn = _mapper.Map<IEnumerable<OfferDto>>(offers);
+
+                return Ok(offersToReturn);
+            }
+
+
+            var offersByCreatorId = await _offerRepository.GetOffersByCreatorIdAsync(user.GetUserId());
+
+            var offersByCreatorIdToReturn = _mapper.Map<IEnumerable<OfferDto>>(offersByCreatorId);
+
+            return Ok(offersByCreatorIdToReturn);
         }
 
         [Authorize]

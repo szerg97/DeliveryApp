@@ -12,6 +12,7 @@ namespace API.Interfaces
         void Update(Offer user);
         Task<bool> SaveAllAsync();
         Task<IEnumerable<Offer>> GetOffersAsync();
+        Task<IEnumerable<Offer>> GetOffersByCreatorIdAsync(string id);
         Task<Offer> GetOfferByIdAsync(string id);
     }
 }
