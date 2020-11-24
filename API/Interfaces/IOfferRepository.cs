@@ -10,6 +10,7 @@ namespace API.Interfaces
     public interface IOfferRepository
     {
         void Update(Offer offer);
+        void DeleteOffer(Offer offer);
         Task<bool> SaveAllAsync();
         Task<IEnumerable<Offer>> GetOffersAsync();
         Task<IEnumerable<Offer>> GetOffersByCreatorIdAsync(string id);

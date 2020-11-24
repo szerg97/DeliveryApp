@@ -32,7 +32,11 @@ export class OfferListComponent implements OnInit {
 
     this.sr = new Signalr('https://localhost:5001/offerHub');
     this.sr.register('NewOffer', t => {
-      this.offers.push(t);
+      this.offers.unshift(t);
+      return true;
+    });
+    this.sr.register('DelOffer', t => {
+      this.offers.splice(this.offers.findIndex(o  => o.offerId === t.offerId), 1);
       return true;
     });
     this.sr.start();
@@ -64,6 +68,10 @@ export class OfferListComponent implements OnInit {
   getUserByCreatorId(creatorId: string): string {
     const user: User =  this.users.find(x => x.id == creatorId);
     return user.userName;
+  }
+
+  deleteOffer(offerId: string){
+    this.offerService.deleteOffer(offerId).subscribe();
   }
 
 }

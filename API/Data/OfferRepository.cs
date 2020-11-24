@@ -53,5 +53,10 @@ namespace API.Data
         {
             _context.Entry(offer).State = EntityState.Modified;
         }
+
+        public void DeleteOffer(Offer offer)
+        {
+            _context.Offers.Remove(offer);
+        }
     }
 }

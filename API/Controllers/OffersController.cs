@@ -22,12 +22,15 @@ namespace API.Controllers
     {
         private readonly IOfferRepository _offerRepository;
         private readonly IMapper _mapper;
+        private readonly IHubContext<OfferHub> _hub;
 
         public OffersController(IOfferRepository offerRepository,
-            IMapper mapper)
+            IMapper mapper,
+            IHubContext<OfferHub> hub)
         {
             _offerRepository = offerRepository;
             _mapper = mapper;
+            _hub = hub;
         }
 
         [Authorize]
@@ -64,7 +67,7 @@ namespace API.Controllers
             return Ok(offerToReturn);
         }
 
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         [HttpPut]
         public async Task<ActionResult> UpdateOffer(OfferUpdateDto dto)
         {
@@ -77,6 +80,23 @@ namespace API.Controllers
             if (await _offerRepository.SaveAllAsync()) return NoContent();
 
             return BadRequest("Failed to update offer");
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("{offerId}")]
+        public async Task<ActionResult> DeleteMessage(string offerId)
+        {
+            var offer = await _offerRepository.GetOfferByIdAsync(offerId);
+            var offerDto = _mapper.Map<OfferDto>(offer);
+
+            _offerRepository.DeleteOffer(offer);
+            if (await _offerRepository.SaveAllAsync())
+            {
+                await _hub.Clients.All.SendAsync("DelOffer", offerDto);
+                return Ok();
+            }
+
+            return BadRequest("Problem deleting the offer");
         }
     }
 }

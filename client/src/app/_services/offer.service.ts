@@ -26,4 +26,8 @@ export class OfferService {
   updateOffer(offer: Offer){
     return this.http.put(this.baseUrl + 'offers', offer);
   }
+
+  deleteOffer(offerId: string){
+    return this.http.delete(this.baseUrl + 'offers/' + offerId);
+  }
 }
