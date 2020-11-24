@@ -3,10 +3,12 @@ using API.DTOs;
 using API.Extensions;
 using API.Interfaces;
 using API.Models;
+using API.SignalR;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters.Xml;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -40,7 +42,7 @@ namespace API.Controllers
 
                 var offersToReturn = _mapper.Map<IEnumerable<OfferDto>>(offers);
 
-                return Ok(offersToReturn);
+                return Ok(offersToReturn.OrderByDescending(x => x.Registered));
             }
 
 
@@ -48,7 +50,7 @@ namespace API.Controllers
 
             var offersByCreatorIdToReturn = _mapper.Map<IEnumerable<OfferDto>>(offersByCreatorId);
 
-            return Ok(offersByCreatorIdToReturn);
+            return Ok(offersByCreatorIdToReturn.OrderByDescending(x => x.Registered));
         }
 
         [Authorize]

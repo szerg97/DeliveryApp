@@ -28,6 +28,12 @@ export class ProfileMessagesComponent implements OnInit {
     });
   }
 
+  deleteMessage(messageId: string){
+    this.messageService.deleteMessage(messageId).subscribe(() => {
+      this.messages.splice(this.messages.findIndex(m  => m.messageId === messageId), 1);
+    });
+  }
+
   pageChanged(event: any){
     this.pageNumber = event.page;
     this.loadMessages();

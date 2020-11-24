@@ -47,10 +47,12 @@ namespace API.Data
 
             query = messageParams.Container switch
             {
-                "Inbox" => query.Where(u => u.Recipient.UserName == messageParams.UserName),
-                "Outbox" => query.Where(u => u.Sender.UserName == messageParams.UserName),
-                _ => query.Where(u => u.Recipient.UserName == messageParams.UserName && u.DateRead == null)
-
+                "Inbox" => query.Where(u => u.Recipient.UserName == messageParams.UserName 
+                && u.RecipientDeleted == false),
+                "Outbox" => query.Where(u => u.Sender.UserName == messageParams.UserName
+                && u.SenderDeleted == false),
+                _ => query.Where(u => u.Recipient.UserName == messageParams.UserName
+                && u.RecipientDeleted == false)
             };
 
             var messages = query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider);
@@ -68,19 +70,6 @@ namespace API.Data
                 )
                 .OrderBy(x => x.MessageSent)
                 .ToListAsync();
-
-            var unreadMessages = messages.Where(m => m.DateRead == null
-            && m.Recipient.UserName == currentUserName).ToList();
-
-            if (unreadMessages.Any())
-            {
-                foreach (var message in unreadMessages)
-                {
-                    message.DateRead = DateTime.Now;
-                }
-
-                await _context.SaveChangesAsync();
-            }
 
             return _mapper.Map<IEnumerable<MessageDto>>(messages);
         }

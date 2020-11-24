@@ -5,7 +5,6 @@ export interface Message {
     recipientId: string;
     recipientUserName: string;
     content: string;
-    dateRead?: Date;
     messageSent: Date;
     subject: string;
   }

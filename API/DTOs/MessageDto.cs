@@ -14,7 +14,6 @@ namespace API.DTOs
         public string RecipientUserName { get; set; }
         public string Content { get; set; }
         public string Subject { get; set; }
-        public DateTime? DateRead { get; set; }
         public DateTime MessageSent { get; set; }
     }
 }

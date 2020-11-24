@@ -1,9 +1,6 @@
     <div class="row mb-4">
         <div class="col-8">
             <div class="btn-group" name='container'>
-                <button class="btn btn-outline-warning" btnRadio='Unread' [(ngModel)]="container" ngDefaultControl  (click)="loadMessages()">
-                    <i class="fa fa-envelope">Unread</i>
-                </button>
                 <button class="btn btn-outline-warning" btnRadio='Inbox' [(ngModel)]="container" ngDefaultControl  (click)="loadMessages()">
                     <i class="fa fa-envelope-open">Inbox</i>
                 </button>
@@ -40,9 +37,9 @@
                         {{message.senderUserName | titlecase}}
                     </div>
                 </td>
-                <td>{{message.messageSent | date:'MMM dd yyyy hh:mm'}}</td>
+                <td>{{message.messageSent | date:'MMM dd, yyyy hh:mm'}}</td>
                 <td>
-                    <button class="btn btn-danger">Delete</button>
+                    <button (click)="deleteMessage(message.messageId)" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
         </table>

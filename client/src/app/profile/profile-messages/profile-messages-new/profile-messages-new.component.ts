@@ -32,9 +32,19 @@ export class ProfileMessagesNewComponent implements OnInit {
   }
 
   sendMessage(){
-    this.messageService.sendMessage(this.model).subscribe(message => {
-      console.log(message);
-      this.router.navigateByUrl('/messages');
-    })
+    if (this.currentUser.role === 'Admin') {
+      this.messageService.sendMessage(this.model).subscribe(message => {
+        console.log(message);
+        this.router.navigateByUrl('/messages');
+      })
+    }
+    else{
+      this.model.recipientUserName='admin';
+      this.messageService.sendMessage(this.model).subscribe(message => {
+        console.log(message);
+        this.router.navigateByUrl('/messages');
+      })
+    }
+    
   }
 }
