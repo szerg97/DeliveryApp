@@ -84,7 +84,7 @@ namespace API.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpDelete("{offerId}")]
-        public async Task<ActionResult> DeleteMessage(string offerId)
+        public async Task<ActionResult> DeleteOffer(string offerId)
         {
             var offer = await _offerRepository.GetOfferByIdAsync(offerId);
             var offerDto = _mapper.Map<OfferDto>(offer);

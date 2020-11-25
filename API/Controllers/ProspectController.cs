@@ -41,9 +41,6 @@ namespace API.Controllers
                 return BadRequest("Prospect does not exist.");
             }
 
-            var myself = this.User;
-            var user_obj = _userManager.GetUserAsync(myself);
-
             Company company = new Company()
             {
                 CompanyId = Guid.NewGuid().ToString(),

@@ -78,6 +78,7 @@ namespace API.Data
         public DbSet<Message> Messages { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Offer> Offers { get; set; }
+        public DbSet<Site> Sites { get; set; }
         public DbSet<Company> Companies { get; set; }
     }
 }
