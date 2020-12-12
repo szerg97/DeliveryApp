@@ -1,10 +1,11 @@
 <div class="container mt-5">
-        <div *ngIf="!registerMode" style="text-align: center;">
+    <div *ngIf="(accountService.currentUser$ | async) === null as user">
+        <div *ngIf="!registerMode && !loginMode" style="text-align: center;">
             <h1>Deliver with us</h1>
             <p class="lead">Come on in to view our solutions... all you need to do is sign up!</p>
             <div class="text-center">
                 <button (click)="registerToggle()" class="btn btn-outline-warning btn-lg mr-2">Register</button>
-                <button class="btn btn-outline-warning btn-lg">Learn more</button>
+                <button (click)="loginToggle()" class="btn btn-outline-warning btn-lg">Login</button>
             </div>
         </div>
     
@@ -15,4 +16,72 @@
                 </div>
             </div>
         </div>
+        <div *ngIf="loginMode" class="container">
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <app-login (cancelLogin)="cancelLoginMode($event)"></app-login>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="(accountService.currentUser$ | async) as user">
+
+        <main role="main">
+
+            <!-- Main jumbotron for a primary marketing message or call to action -->
+            <div class="jumbotron">
+              <div class="container">
+                <h1 class="display-3">Hello, {{user.firstName}}!</h1>
+                <p>Are you planning to make a <strong>Quotation</strong>? If so, please click on the <strong>Contacts</strong> tab. Or if you're not sure check out our <strong>Services</strong> or write an E-mail to us!</p>
+                <p><a class="btn btn-outline-dark btn-lg" routerLink='/offers' role="button">Go to my offers »</a></p>
+              </div>
+            </div>
+          
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../../assets/images/road.jpg" height="190px" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">Road freight</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-outline-warning animate">Learn more »</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../../assets/images/rail.jpg" height="190px" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">Rail freight</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-outline-warning">Learn more »</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../../assets/images/sea.jpg" height="190px" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">Sea freight</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-outline-warning">Learn more »</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../../assets/images/air.png" height="190px" class="card-img-top" alt="...">
+                        <div class="card-body">
+                        <h5 class="card-title">Air freight</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-outline-warning">Learn more »</a>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <hr>
+            </div>
+          </main>
+    </div>
 </div>

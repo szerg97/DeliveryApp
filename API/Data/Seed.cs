@@ -53,42 +53,14 @@ namespace API.Data
         {
             if (await context.Sites.AnyAsync()) return;
 
-            context.Sites.Add(new Site
+            var siteData = await System.IO.File.ReadAllTextAsync("Data/SiteSeedData.json");
+            var sites = JsonSerializer.Deserialize<List<Site>>(siteData);
+
+            foreach (var item in sites)
             {
-                SiteId = Guid.NewGuid().ToString(),
-                Address = "Hunyadi Mátyás street 58",
-                City = "Budapest",
-                Zip = "1146",
-                Country = "Hungary",
-                SiteName = "WD Logistics HQ Budapest"
-            });
-            context.Sites.Add(new Site
-            {
-                SiteId = Guid.NewGuid().ToString(),
-                Address = "Ady Endre street 112",
-                City = "Budapest",
-                Zip = "1082",
-                Country = "Hungary",
-                SiteName = "WD Logistics Manufacture"
-            });
-            context.Sites.Add(new Site
-            {
-                SiteId = Guid.NewGuid().ToString(),
-                Address = "Petõfi Sándor street 6/B",
-                City = "Debrecen",
-                Zip = "4024",
-                Country = "Hungary",
-                SiteName = "WD Logistics Manufacture"
-            });
-            context.Sites.Add(new Site
-            {
-                SiteId = Guid.NewGuid().ToString(),
-                Address = "Podmanicky street 78",
-                City = "Bratislava",
-                Zip = "8974",
-                Country = "Slovakia",
-                SiteName = "WD Logistics Bratislava"
-            });
+                item.SiteId = Guid.NewGuid().ToString();
+                context.Sites.Add(item);
+            }
 
             await context.SaveChangesAsync();
         }

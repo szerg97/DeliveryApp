@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';
@@ -11,9 +11,10 @@ import { AccountService } from '../_services/account.service';
 })
 export class HomeComponent implements OnInit {
   registerMode = false;
-  response: any;
+  loginMode = false;
+  response: User;
 
-  constructor(private accountService: AccountService) { }
+  constructor(public accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
     this.getCurrentUser();
@@ -23,8 +24,16 @@ export class HomeComponent implements OnInit {
     this.registerMode = !this.registerMode;
   }
 
+  loginToggle(){
+    this.loginMode = !this.loginMode;
+  }
+
   cancelRegisterMode(event: boolean){
     this.registerMode = event;
+  }
+
+  cancelLoginMode(event: boolean){
+    this.loginMode = event;
   }
 
   getCurrentUser(){
@@ -32,5 +41,4 @@ export class HomeComponent implements OnInit {
       this.response = resp;
     })
   }
-
 }

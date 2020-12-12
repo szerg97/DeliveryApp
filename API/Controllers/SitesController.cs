@@ -4,6 +4,7 @@ using API.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters.Xml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,14 +40,13 @@ namespace API.Controllers
         }
 
         [HttpPost("add-site")]
-        public async Task<ActionResult<SiteDto>> AddSite(SiteDto dto)
+        public ActionResult<SiteDto> AddSite(SiteDto dto)
         {
             if (dto == null)
             {
                 return BadRequest("Site does not exist.");
             }
 
-            
             var site = _mapper.Map<Site>(dto);
             site.SiteId = Guid.NewGuid().ToString();
 

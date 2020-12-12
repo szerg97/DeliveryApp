@@ -12,4 +12,7 @@ export class InformationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  createPieChart(){
+    
+  }
 }

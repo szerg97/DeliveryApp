@@ -68,9 +68,9 @@ namespace API.Controllers
                 CreatorId = dto.CreatorId
             };
 
-             _context.Companies.Add(company);
-             _context.Offers.Add(offer);
-             _context.SaveChanges();
+             await _context.Companies.AddAsync(company);
+             await _context.Offers.AddAsync(offer);
+             await _context.SaveChangesAsync();
 
             var offerDto = _mapper.Map<OfferDto>(offer);
 

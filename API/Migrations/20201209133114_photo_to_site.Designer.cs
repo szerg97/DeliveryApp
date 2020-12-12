@@ -4,14 +4,16 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201209133114_photo_to_site")]
+    partial class photo_to_site
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -290,9 +292,6 @@ namespace API.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("IsMain")
-                        .HasColumnType("bit");
-
                     b.Property<string>("PublicId")
                         .HasColumnType("nvarchar(max)");
 
@@ -304,7 +303,9 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SiteId");
+                    b.HasIndex("SiteId")
+                        .IsUnique()
+                        .HasFilter("[SiteId] IS NOT NULL");
 
                     b.ToTable("Photo");
                 });
@@ -479,8 +480,8 @@ namespace API.Migrations
             modelBuilder.Entity("API.Models.Photo", b =>
                 {
                     b.HasOne("API.Models.Site", "Site")
-                        .WithMany("Photos")
-                        .HasForeignKey("SiteId")
+                        .WithOne("Photo")
+                        .HasForeignKey("API.Models.Photo", "SiteId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

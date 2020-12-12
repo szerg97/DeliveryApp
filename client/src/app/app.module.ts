@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -23,6 +24,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ProfileMessagesNewComponent } from './profile/profile-messages/profile-messages-new/profile-messages-new.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     ProfileEditComponent,
     ProfileMessagesComponent,
     ProfileMessagesNewComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
     ReactiveFormsModule,
     ButtonsModule,
     SharedModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    CarouselModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi: true},

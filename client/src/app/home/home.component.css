@@ -1,0 +1,10 @@
+.jumbotron{
+    background-color:#ffcc00;
+}
+
+.card:hover img{
+    transform: scale(1.2, 1.2);
+    transition-duration: 250ms;
+    transition-timing-function: ease-out;
+
+}

@@ -4,7 +4,6 @@ import { take } from 'rxjs/operators';
 import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';
 import { OfferService } from '../_services/offer.service';
-import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-prospect',

@@ -1,0 +1,36 @@
+[
+  {
+    "SiteName": "DW Logistics Manufacture",
+    "Address": "Petõfi Sándor street 6/B",
+    "Zip": "4024",
+    "City": "Budapest",
+    "Country": "Hungary",
+    "Photos": [
+      {
+        "Url": ".//Images//hq1.jpg",
+        "IsMain":  true
+      }
+    ]
+  },
+  {
+    "SiteName": "DW Logistics Manufacture",
+    "Address": "Ady Endre street 112",
+    "Zip": "1082",
+    "City": "Debrecen",
+    "Country": "Hungary"
+  },
+  {
+    "SiteName": "DW Logistics Bratislava",
+    "Address": "Podmanicky street 78",
+    "Zip": "8974",
+    "City": "Bratislava",
+    "Country": "Slovakia"
+  },
+  {
+    "SiteName": "DW Logistics HQ Budapest",
+    "Address": "Hunyadi Mátyás street 58",
+    "Zip": "1146",
+    "City": "Budapest",
+    "Country": "Hungary"
+  }
+]
