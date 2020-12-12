@@ -20,6 +20,7 @@ namespace API.Extensions
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IMessageRepository, MessageRepository>();
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ISiteRepository, SiteRepository>();
             services.AddScoped<IOfferRepository, OfferRepository>();
             services.AddScoped<IUserRepository, UserRepository>();

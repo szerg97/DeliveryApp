@@ -58,5 +58,10 @@ namespace API.Data
         {
             _context.Offers.Remove(offer);
         }
+
+        public void AddOffer(Offer offer)
+        {
+            _context.Offers.Add(offer);
+        }
     }
 }

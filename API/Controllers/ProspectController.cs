@@ -1,5 +1,6 @@
 ﻿using API.Data;
 using API.DTOs;
+using API.Interfaces;
 using API.Models;
 using API.SignalR;
 using AutoMapper;
@@ -17,19 +18,22 @@ namespace API.Controllers
     public class ProspectController : BaseApiController
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<AppUser> _userManager;
         private readonly IHubContext<OfferHub> _hub;
         private readonly IMapper _mapper;
+        private readonly IOfferRepository _offerRepository;
+        private readonly ICompanyRepository _companyRepository;
 
         public ProspectController(ApplicationDbContext context,
-            UserManager<AppUser> userManager,
             IHubContext<OfferHub> hub,
-            IMapper mapper)
+            IMapper mapper,
+            IOfferRepository offerRepository,
+            ICompanyRepository companyRepository)
         {
             _context = context;
-            _userManager = userManager;
             _hub = hub;
             _mapper = mapper;
+            _offerRepository = offerRepository;
+            _companyRepository = companyRepository;
         }
 
         [Authorize]
@@ -68,9 +72,11 @@ namespace API.Controllers
                 CreatorId = dto.CreatorId
             };
 
-             await _context.Companies.AddAsync(company);
-             await _context.Offers.AddAsync(offer);
-             await _context.SaveChangesAsync();
+            _companyRepository.AddCompany(company);
+            await _companyRepository.SaveAllAsync();
+
+            _offerRepository.AddOffer(offer);
+            await _offerRepository.SaveAllAsync();
 
             var offerDto = _mapper.Map<OfferDto>(offer);
 

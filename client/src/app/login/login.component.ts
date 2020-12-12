@@ -12,7 +12,6 @@ import { AccountService } from '../_services/account.service';
 })
 export class LoginComponent implements OnInit {
   @Output() cancelLogin = new EventEmitter();
-  model:any = {}
   currentUser: User;
   loginForm: FormGroup;
 
@@ -31,9 +30,9 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.accountService.login(this.model).subscribe(
+    this.accountService.login(this.loginForm.value).subscribe(
       response => {
-        this.router.navigateByUrl('/offers');
+        this.router.navigateByUrl('/');
       }, error => {
         console.log(error);
       });
