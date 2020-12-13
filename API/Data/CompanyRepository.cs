@@ -1,5 +1,6 @@
 ﻿using API.Interfaces;
 using API.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,20 @@ namespace API.Data
         public void AddCompany(Company company)
         {
             _context.Companies.Add(company);
+        }
+
+        public async Task<IEnumerable<Company>> GetCompaniesAsync()
+        {
+            return await _context.Companies
+                .Include(c => c.Creator)
+                .ToListAsync();
+        }
+
+        public async Task<Company> GetCompany(string companyId)
+        {
+            return await _context.Companies
+                .Include(c => c.Creator)
+                .SingleOrDefaultAsync(x => x.CompanyId == companyId);
         }
 
         public async Task<bool> SaveAllAsync()

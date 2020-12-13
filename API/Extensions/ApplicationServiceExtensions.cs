@@ -21,7 +21,7 @@ namespace API.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
-            services.AddScoped<ISiteRepository, SiteRepository>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IOfferRepository, OfferRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);

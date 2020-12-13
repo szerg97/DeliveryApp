@@ -73,17 +73,12 @@ namespace API.Data
                .HasOne(u => u.Sender)
                .WithMany(m => m.MessagesSent)
                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<Site>()
-               .HasMany(u => u.Photos)
-               .WithOne(p => p.Site)
-               .OnDelete(DeleteBehavior.Cascade);
         }
 
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Country> Countries { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Offer> Offers { get; set; }
-        public DbSet<Site> Sites { get; set; }
         public DbSet<Company> Companies { get; set; }
     }
 }

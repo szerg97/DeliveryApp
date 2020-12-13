@@ -1,3 +1,27 @@
 .jumbotron{
     background-color:#ffcc00;
 }
+
+.brick:hover{
+    background-color: white;
+    opacity: 0.8;
+}
+
+.card {
+    background: transparent;
+}
+
+.card-img-overlay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img-overlay{
+    text-shadow: 6px 6px 6px #000;
+}
+
+img{
+    border-radius: 50%;
+    transform: scale(0.8);
+}

@@ -1,3 +1,7 @@
 .btn-group{
     font-family: 'Lucida Sans';
 }
+
+.btn-new{
+    border-radius: 50%;
+}

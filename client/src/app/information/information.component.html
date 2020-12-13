@@ -5,19 +5,59 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <p>We ship to !!NUMBER!! countries</p>
+        <div class="col-md-6 brick">
+            <div class="card-transparent" style="border: none;">
+                <img src="../../assets/images/europe.jpg" alt="Countries" width=100%>
+                <div class="card-img-overlay text-center"  style="vertical-align: middle;">
+                    <h1 class="card-title" style="color: #ffcc00;">We ship to {{countriesCount}} countries</h1>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <p>We currently have !!NUMBER!! customers</p> 
+        <div class="col-md-6 brick">
+            <div class="card-transparent" style="border: none;">
+                <img src="../../assets/images/customer.jpg" alt="Customers" width=100%>
+                <div class="card-img-overlay text-center">
+                    <h1 class="card-title" style="color: #ffcc00;">We currently have {{usersCount}} customers</h1>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            <p>We currently have !!NUMBER!! offers running</p> 
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6 brick">
+            <div class="card-transparent" style="border: none;">
+                <img src="../../assets/images/offers.jpg" alt="Offers" width=100%>
+                <div class="card-img-overlay text-center">
+                    <h1 class="card-title" style="color: #ffcc00;">We currently have {{offersCount}} offers in total</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-3 brick">
+            <div class="card-transparent" style="border: none;">
+                <img src="../../assets/images/pending.jpg" alt="Pending" width=100%>
+                <div class="card-img-overlay text-center">
+                    <h1 class="card-title" style="color: #ffcc00; border-radius: 50%;">{{offersRunningCount}} of them running</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 brick">
+            <div class="card-transparent" style="border: none;">
+                <img src="../../assets/images/complete.png" alt="Completed" width=100%>
+                <div class="card-img-overlay text-center">
+                    <h1 class="card-title" style="color: #ffcc00;">{{offersCompleteCount}} of them complete</h1>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <p>We currently have !!NUMBER!! offers completed</p> 
+        <div class="col brick">
+            <div class="card-transparent" style="border: none;">
+                <img src="../../assets/images/companies.jpg" alt="Companies" width=100%>
+                <div class="card-img-overlay text-center">
+                    <h1 class="card-title" style="color: #ffcc00;">We are currently dealing with {{companiesCount}} companies</h1>
+                </div>
+            </div>
         </div>
     </div>
 </div>

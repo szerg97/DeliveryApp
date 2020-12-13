@@ -44,6 +44,24 @@ namespace API.Data
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Offer>> GetOffersRunningAsync()
+        {
+            return await _context.Offers
+                .Include(o => o.Creator)
+                .Include(o => o.Company)
+                .Where(o => o.Status == "Pending")
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Offer>> GetOffersCompleteAsync()
+        {
+            return await _context.Offers
+                .Include(o => o.Creator)
+                .Include(o => o.Company)
+                .Where(o => o.Status == "Completed")
+                .ToListAsync();
+        }
+
         public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync() > 0;

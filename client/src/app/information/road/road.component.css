@@ -1,0 +1,6 @@
+.jumbotron {
+    background-image: url("../../../assets/images/carousel_road.jpg");
+    background-size: cover;
+    color: #ffcc00;
+    text-align: center;
+  }

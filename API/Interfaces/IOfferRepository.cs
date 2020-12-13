@@ -14,6 +14,8 @@ namespace API.Interfaces
         void DeleteOffer(Offer offer);
         Task<bool> SaveAllAsync();
         Task<IEnumerable<Offer>> GetOffersAsync();
+        Task<IEnumerable<Offer>> GetOffersRunningAsync();
+        Task<IEnumerable<Offer>> GetOffersCompleteAsync();
         Task<IEnumerable<Offer>> GetOffersByCreatorIdAsync(string id);
         Task<Offer> GetOfferByIdAsync(string id);
     }

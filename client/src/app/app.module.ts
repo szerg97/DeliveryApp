@@ -12,7 +12,6 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { OfferListComponent } from './offers/offer-list/offer-list.component';
 import { OfferDetailComponent } from './offers/offer-detail/offer-detail.component';
-import { SitesComponent } from './sites/sites.component';
 import { InformationComponent } from './information/information.component';
 import { ProspectComponent } from './prospect/prospect.component';
 import { FeedbacksComponent } from './feedbacks/feedbacks.component';
@@ -25,6 +24,10 @@ import { ProfileMessagesNewComponent } from './profile/profile-messages/profile-
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { LoginComponent } from './login/login.component';
+import { AirComponent } from './information/air/air.component';
+import { RailComponent } from './information/rail/rail.component';
+import { RoadComponent } from './information/road/road.component';
+import { SeaComponent } from './information/sea/sea.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,6 @@ import { LoginComponent } from './login/login.component';
     RegisterComponent,
     OfferListComponent,
     OfferDetailComponent,
-    SitesComponent,
     InformationComponent,
     ProspectComponent,
     FeedbacksComponent,
@@ -42,6 +44,10 @@ import { LoginComponent } from './login/login.component';
     ProfileMessagesComponent,
     ProfileMessagesNewComponent,
     LoginComponent,
+    AirComponent,
+    RailComponent,
+    RoadComponent,
+    SeaComponent,
   ],
   imports: [
     BrowserModule,

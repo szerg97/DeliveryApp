@@ -10,5 +10,7 @@ namespace API.Interfaces
     {
         void AddCompany(Company company);
         Task<bool> SaveAllAsync();
+        Task<IEnumerable<Company>> GetCompaniesAsync();
+        Task<Company> GetCompany(string companyId);
     }
 }

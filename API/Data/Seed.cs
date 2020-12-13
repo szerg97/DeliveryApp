@@ -48,21 +48,5 @@ namespace API.Data
             await userManager.CreateAsync(admin, "password");
             await userManager.AddToRolesAsync(admin, new[] { "Admin", "Member" });
         }
-
-        public static async Task SeedSites(ApplicationDbContext context)
-        {
-            if (await context.Sites.AnyAsync()) return;
-
-            var siteData = await System.IO.File.ReadAllTextAsync("Data/SiteSeedData.json");
-            var sites = JsonSerializer.Deserialize<List<Site>>(siteData);
-
-            foreach (var item in sites)
-            {
-                item.SiteId = Guid.NewGuid().ToString();
-                context.Sites.Add(item);
-            }
-
-            await context.SaveChangesAsync();
-        }
     }
 }

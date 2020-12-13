@@ -168,6 +168,22 @@ namespace API.Migrations
                     b.ToTable("Companies");
                 });
 
+            modelBuilder.Entity("API.Models.Country", b =>
+                {
+                    b.Property<string>("CountryId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CountryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Region")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CountryId");
+
+                    b.ToTable("Countries");
+                });
+
             modelBuilder.Entity("API.Models.Feedback", b =>
                 {
                     b.Property<string>("Id")
@@ -283,55 +299,6 @@ namespace API.Migrations
                     b.HasIndex("CreatorId");
 
                     b.ToTable("Offers");
-                });
-
-            modelBuilder.Entity("API.Models.Photo", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsMain")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PublicId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SiteId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Url")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SiteId");
-
-                    b.ToTable("Photo");
-                });
-
-            modelBuilder.Entity("API.Models.Site", b =>
-                {
-                    b.Property<string>("SiteId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SiteName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Zip")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SiteId");
-
-                    b.ToTable("Sites");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -474,14 +441,6 @@ namespace API.Migrations
                     b.HasOne("API.Models.AppUser", "Creator")
                         .WithMany("Offers")
                         .HasForeignKey("CreatorId");
-                });
-
-            modelBuilder.Entity("API.Models.Photo", b =>
-                {
-                    b.HasOne("API.Models.Site", "Site")
-                        .WithMany("Photos")
-                        .HasForeignKey("SiteId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

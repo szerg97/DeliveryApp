@@ -9,7 +9,6 @@
     </div>
     <div class="col-4">
         <div class="card">
-            <p>picture goes here</p>
             <div class="card-body">
                 <div>
                     <h2><strong class="text-capitalize">{{user.userName}}</strong></h2>
@@ -48,10 +47,6 @@
                 <input class="form-control" name="lastName" type="text"
                 [(ngModel)]="user.lastName" >
             </div>
-            <div class="form-group">
-                <input type="date" class="form-control" name="dateofbirth" 
-                [(ngModel)]="user.dateOfBirth">
-            </div>
             <div clas="form-group">
                 <label>Gender</label>
                 <div class="form-group">
@@ -60,6 +55,11 @@
                         <option value="Female">Female</option>
                     </select>
                 </div>
+            </div>
+            <div class="form-group">
+                <label>Date of birth</label>
+                <input type="date" class="form-control" name="dateofbirth" 
+                [(ngModel)]="user.dateOfBirth">
             </div>
         </form>
     </div>

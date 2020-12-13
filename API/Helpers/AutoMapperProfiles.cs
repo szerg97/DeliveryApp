@@ -21,8 +21,8 @@ namespace API.Helpers
                 .ForMember(dest => dest.CreatorName, opt => opt.MapFrom(src => src.Creator.FirstName + " " + src.Creator.LastName))
                 .ForMember(dest => dest.CompanyName, opt => opt.MapFrom(src => src.Company.CompanyName));
             CreateMap<OfferUpdateDto, Offer>();
-            CreateMap<SiteDto, Site>();
-            CreateMap<Site, SiteDto>();
+            CreateMap<Company, CompanyDto>();
+            CreateMap<CompanyDto, Company>();
         }
     }
 }
