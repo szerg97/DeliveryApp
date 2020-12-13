@@ -35,14 +35,14 @@ export class ProfileMessagesNewComponent implements OnInit {
     if (this.currentUser.role === 'Admin') {
       this.messageService.sendMessage(this.model).subscribe(message => {
         console.log(message);
-        this.router.navigateByUrl('/messages');
+        this.router.navigateByUrl('/profile/messages');
       })
     }
     else{
       this.model.recipientUserName='admin';
       this.messageService.sendMessage(this.model).subscribe(message => {
         console.log(message);
-        this.router.navigateByUrl('/messages');
+        this.router.navigateByUrl('/profile/messages');
       })
     }
     

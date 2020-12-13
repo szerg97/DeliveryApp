@@ -23,6 +23,8 @@ namespace API.Helpers
             CreateMap<OfferUpdateDto, Offer>();
             CreateMap<Company, CompanyDto>();
             CreateMap<CompanyDto, Company>();
+            CreateMap<Country, CountryDto>();
+            CreateMap<CountryDto, Country>();
         }
     }
 }
