@@ -6,6 +6,7 @@ import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { OfferService } from 'src/app/_services/offer.service';
 import { UserService } from 'src/app/_services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-offer-list',
@@ -30,7 +31,7 @@ export class OfferListComponent implements OnInit {
     this.getUsers();
     this.getOffers();
 
-    this.sr = new Signalr('https://localhost:5001/offerHub');
+    this.sr = new Signalr(environment.hubUrl);
     this.sr.register('NewOffer', t => {
       this.offers.unshift(t);
       return true;
