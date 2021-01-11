@@ -1,3 +1,4 @@
+using API.Interfaces;
 using API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +48,17 @@ namespace API.Data
 
             await userManager.CreateAsync(admin, "password");
             await userManager.AddToRolesAsync(admin, new[] { "Admin", "Member" });
+        }
+
+        public static async Task SeedCountries(ApplicationDbContext context){
+            if (await context.Countries.CountAsync() != 0) return;
+
+            await context.Countries.AddAsync(new Country(){CountryId = "1", CountryName = "Hungary", Region = "Central Europe"});
+            await context.Countries.AddAsync(new Country(){CountryId = "2", CountryName = "Austria", Region = "Central Europe"});
+            await context.Countries.AddAsync(new Country(){CountryId = "3", CountryName = "Slovakia", Region = "Central Europe"});
+            await context.Countries.AddAsync(new Country(){CountryId = "4", CountryName = "Slovenia", Region = "Central Europe"});
+
+            await context.SaveChangesAsync();
         }
     }
 }
