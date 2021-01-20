@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
+using API.Interfaces;
 using API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -16,20 +17,22 @@ namespace API.Controllers
     public class FeedbacksController : BaseApiController
     {
         private  ApplicationDbContext _context;
-        private  UserManager<AppUser> _userManager;
+        private readonly IFeedbackRepository _feedbackRepository;
 
         public FeedbacksController(ApplicationDbContext context,
-            UserManager<AppUser> userManager)
+            UserManager<AppUser> userManager,
+            IFeedbackRepository feedbackRepository)
         {
             _context = context;
-            _userManager = userManager;
+            _feedbackRepository = feedbackRepository;
         }
 
         [Authorize(Roles = "Member")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Feedback>>> GetFeedbacks()
         {
-            return await _context.Feedbacks.OrderByDescending(x => x.Date).ToListAsync();
+            var feedbacksToReturn = await _feedbackRepository.GetFeedbacksAsync();
+            return Ok(feedbacksToReturn);
         }
 
 
@@ -52,8 +55,11 @@ namespace API.Controllers
                 Solution = dto.Solution
             };
 
-            await _context.Feedbacks.AddAsync(feedback);
-            await _context.SaveChangesAsync();
+            //await _context.Feedbacks.AddAsync(feedback);
+            //await _context.SaveChangesAsync();
+
+            _feedbackRepository.AddFeedback(feedback);
+            await _feedbackRepository.SaveAllAsync();
 
             return new FeedbackDto(){CreatorId = feedback.CreatorId, Text = feedback.Text, Value = feedback.Value, Solution = feedback.Solution};
         }
