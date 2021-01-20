@@ -48,5 +48,67 @@ namespace API.Data
             await userManager.CreateAsync(admin, "password");
             await userManager.AddToRolesAsync(admin, new[] { "Admin", "Member" });
         }
+
+        public static async Task SeedCountries(ApplicationDbContext context)
+        {
+            if (await context.Countries.AnyAsync()) return;
+
+            context.Countries.Add(new Country()
+            {
+                CountryId = Guid.NewGuid().ToString(),
+                CountryName = "Austria",
+                Region = "Central Europe"
+            });
+            context.Countries.Add(new Country()
+            {
+                CountryId = Guid.NewGuid().ToString(),
+                CountryName = "Slovakia",
+                Region = "Central Europe"
+            });
+            context.Countries.Add(new Country()
+            {
+                CountryId = Guid.NewGuid().ToString(),
+                CountryName = "Slovenia",
+                Region = "Central Europe"
+            });
+            context.Countries.Add(new Country()
+            {
+                CountryId = Guid.NewGuid().ToString(),
+                CountryName = "Hungary",
+                Region = "Central Europe"
+            });
+            context.Countries.Add(new Country()
+            {
+                CountryId = Guid.NewGuid().ToString(),
+                CountryName = "Italy",
+                Region = "Southern Europe"
+            });
+            context.Countries.Add(new Country()
+            {
+                CountryId = Guid.NewGuid().ToString(),
+                CountryName = "Germany",
+                Region = "Western Europe"
+            });
+            context.Countries.Add(new Country()
+            {
+                CountryId = Guid.NewGuid().ToString(),
+                CountryName = "France",
+                Region = "Western Europe"
+            });
+            context.Countries.Add(new Country()
+            {
+                CountryId = Guid.NewGuid().ToString(),
+                CountryName = "Poland",
+                Region = "Central Europe"
+            });
+            context.Countries.Add(new Country()
+            {
+                CountryId = Guid.NewGuid().ToString(),
+                CountryName = "Croatia",
+                Region = "Southern Europe"
+            });
+
+            await context.SaveChangesAsync();
+        }
     }
 }
