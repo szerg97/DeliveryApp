@@ -1,32 +1,44 @@
 [
     {
-      "UserName": "Dave",
+      "UserName": "dave",
+      "FirstName": "Dave",
+      "LastName": "Smith",
       "Gender": "male",
       "DateOfBirth": "1988-08-01"
     },
-    {
-      "UserName": "Maxwell",
-      "Gender": "male",
-      "DateOfBirth": "1994-09-08"
-    },
-    {
-      "UserName": "Mcclure",
-      "Gender": "male",
-      "DateOfBirth": "1981-05-13"
-    },
-    {
-      "UserName": "Daniel",
-      "Gender": "male",
-      "DateOfBirth": "1995-11-12"
-    },
-    {
-      "UserName": "Bender",
-      "Gender": "male",
-      "DateOfBirth": "1981-06-05"
-    },
-    {
-      "UserName": "Randolph",
-      "Gender": "male",
-      "DateOfBirth": "1984-12-02"
-    }
+  {
+    "UserName": "maxwell",
+    "FirstName": "Maxwell",
+    "LastName": "Chimney",
+    "Gender": "male",
+    "DateOfBirth": "1994-09-08"
+  },
+  {
+    "UserName": "mcclure",
+    "FirstName": "McClure",
+    "LastName": "Brown",
+    "Gender": "male",
+    "DateOfBirth": "1981-05-13"
+  },
+  {
+    "UserName": "daniel",
+    "FirstName": "Daniel",
+    "LastName": "O'Brian",
+    "Gender": "male",
+    "DateOfBirth": "1995-11-12"
+  },
+  {
+    "UserName": "bender",
+    "FirstName": "Bender",
+    "LastName": "Garneer",
+    "Gender": "male",
+    "DateOfBirth": "1981-06-05"
+  },
+  {
+    "UserName": "randolph",
+    "FirstName": "Randolph",
+    "LastName": "Wright",
+    "Gender": "male",
+    "DateOfBirth": "1984-12-02"
+  }
   ]

@@ -24,6 +24,7 @@ namespace API.Extensions
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IOfferRepository, OfferRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IFeedbackRepository, FeedbackRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<ApplicationDbContext>(options =>
             {

@@ -2,9 +2,16 @@
     background-color:#ffcc00;
 }
 
-.card:hover img{
+.card:hover{
     transform: scale(1.2, 1.2);
     transition-duration: 250ms;
     transition-timing-function: ease-out;
+}
 
+.card{
+    margin: 30px;
+}
+
+.mylink{
+    text-decoration: none;
 }

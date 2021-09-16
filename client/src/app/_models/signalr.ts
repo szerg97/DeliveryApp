@@ -11,7 +11,7 @@ export class Signalr{
             .build();
     }
 
-    register(methodname: string, method: Predicate<Offer>){
+    register(methodname: string, method: Predicate<any>){
         this.hubConnection.on(methodname, method);
     }
 

@@ -34,6 +34,7 @@ namespace API.Data
             {
                 user.Id = Guid.NewGuid().ToString();
                 user.UserName = user.UserName.ToLower();
+                Console.WriteLine(user.FirstName);
 
                 await userManager.CreateAsync(user, "password");
                 await userManager.AddToRoleAsync(user, "Member");
@@ -42,11 +43,111 @@ namespace API.Data
             var admin = new AppUser()
             {
                 Id = Guid.NewGuid().ToString(),
-                UserName = "admin"
+                UserName = "admin",
+                FirstName = "Admin",
+                LastName = "Admin"
             };
 
             await userManager.CreateAsync(admin, "password");
             await userManager.AddToRolesAsync(admin, new[] { "Admin", "Member" });
+        }
+
+        public static async Task SeedOffers (ApplicationDbContext context, UserManager<AppUser> userManager)
+        {
+            if (await context.Offers.AnyAsync()) return;
+
+            List<AppUser> users = await userManager.Users.ToListAsync();
+            foreach (var user in users)
+            {
+                Company company = await context.Companies.FirstOrDefaultAsync(x => x.Creator == user);
+
+                context.Offers.Add(new Offer()
+                {
+                    OfferId = Guid.NewGuid().ToString(),
+                    Creator = user,
+                    FromZip = "5500",
+                    FromCity = "Prague",
+                    FromCountry = "Czech Republic",
+                    ToZip = "6800",
+                    ToCity = "Wien",
+                    ToCountry = "Austria",
+                    Registered = DateTime.Now,
+                    Status = "Pending",
+                    Solution = "air",
+                    Text = "I would like to deliver .... Thanks!",
+                    Company = company
+                });
+
+                context.Offers.Add(new Offer()
+                {
+                    OfferId = Guid.NewGuid().ToString(),
+                    Creator = user,
+                    FromZip = "9600",
+                    FromCity = "Gyõr",
+                    FromCountry = "Hungary",
+                    ToZip = "3200",
+                    ToCity = "Bratislava",
+                    ToCountry = "Slovakia",
+                    Registered = DateTime.Now,
+                    Status = "Pending",
+                    Solution = "road",
+                    Text = "I would like to deliver .... Thanks!",
+                    Company = company
+                });
+
+                context.Offers.Add(new Offer()
+                {
+                    OfferId = Guid.NewGuid().ToString(),
+                    Creator = user,
+                    FromZip = "11900",
+                    FromCity = "Warsaw",
+                    FromCountry = "Poland",
+                    ToZip = "98900",
+                    ToCity = "Berlin",
+                    ToCountry = "Germany",
+                    Registered = DateTime.Now,
+                    Status = "Completed",
+                    Solution = "rail",
+                    Text = "I would like to deliver .... Thanks!",
+                    Company = company
+                });
+
+                await context.SaveChangesAsync();
+            }
+            
+        }
+
+        public static async Task SeedCompanies(ApplicationDbContext context, UserManager<AppUser> userManager)
+        {
+            if (await context.Companies.AnyAsync()) return;
+
+            List<AppUser> users = await userManager.Users.ToListAsync();
+            foreach (var user in users)
+            {
+                context.Companies.Add(new Company()
+                {
+                    CompanyId = Guid.NewGuid().ToString(),
+                    Creator = user,
+                    Registered = DateTime.Now,
+                    CompanyName = user.FirstName + "'s Company Ltd.",
+                    CompanyCountry = "Austria",
+                    CompanyZip = "19000",
+                    NumberOfEmployees = 250
+                });
+
+                context.Companies.Add(new Company()
+                {
+                    CompanyId = Guid.NewGuid().ToString(),
+                    Creator = user,
+                    Registered = DateTime.Now,
+                    CompanyName = user.FirstName + " Industries",
+                    CompanyCountry = "Budapest",
+                    CompanyZip = "1032",
+                    NumberOfEmployees = 180
+                });
+
+                await context.SaveChangesAsync();
+            }
         }
 
         public static async Task SeedCountries(ApplicationDbContext context)

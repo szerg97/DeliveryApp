@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Extensions;
+using API.Hubs;
 using API.SignalR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -62,6 +63,7 @@ namespace API
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<OfferHub>("/offerHub");
+                endpoints.MapHub<FeedbackHub>("/feedbackHub");
             });
         }
     }

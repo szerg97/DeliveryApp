@@ -29,6 +29,8 @@ namespace API
                 await context.Database.MigrateAsync();
                 await Seed.SeedUsers(userManager, roleManager);
                 await Seed.SeedCountries(context);
+                await Seed.SeedCompanies(context, userManager);
+                await Seed.SeedOffers(context, userManager);
 
 
             }

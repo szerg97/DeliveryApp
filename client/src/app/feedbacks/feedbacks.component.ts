@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { Feedback } from '../_models/feedback';
+import { Signalr } from 'src/app/_models/signalr';
 import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';
 import { FeedbackService } from '../_services/feedback.service';
@@ -18,6 +19,7 @@ export class FeedbacksComponent implements OnInit {
   currentUser: User;
   feedbacks: Feedback[];
   loggedIn: boolean;
+  private sr: Signalr;
 
   constructor(private feedbackService: FeedbackService,
     private userService: UserService,
@@ -30,6 +32,13 @@ export class FeedbacksComponent implements OnInit {
     this.getFeedbacks();
     this.getUsers();
     this.getCurrentUser();
+
+    this.sr = new Signalr('https://localhost:5001/feedbackHub');
+    this.sr.register('NewFeedback', t => {
+      this.feedbacks.unshift(t);
+      return true;
+    });
+    this.sr.start();
   }
 
   getUserByCreatorId(creatorId: string): string {

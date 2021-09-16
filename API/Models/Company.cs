@@ -21,5 +21,10 @@ namespace API.Models
         public string CreatorId { get; set; }
 
         public virtual AppUser Creator { get; set; }
+
+        public static implicit operator List<object>(Company v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
