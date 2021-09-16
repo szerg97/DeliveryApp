@@ -92,9 +92,15 @@
           </main>
     </div>
 </div>
-<div id="footer">
+<div id="footerifnot" *ngIf="(accountService.currentUser$ | async) === null as user">
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
     © 2021 Copyright:
     <a routerLink='/'>wedeliver.com</a>
   </div>
 </div>
+<div id="footerifyes" *ngIf="(accountService.currentUser$ | async) as user">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2021 Copyright:
+      <a routerLink='/'>wedeliver.com</a>
+    </div>
+  </div>

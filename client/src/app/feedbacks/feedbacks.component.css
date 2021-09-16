@@ -1,3 +1,17 @@
 .jumbotron{
     background-color:#ffcc00;
 }
+
+#footer {
+    color: white;
+    text-align: center;
+    position: relative;
+    bottom:0;
+    width:100%;
+    height: 200px;
+    background: #303030;
+}
+
+.container{
+    height: 100%;
+}

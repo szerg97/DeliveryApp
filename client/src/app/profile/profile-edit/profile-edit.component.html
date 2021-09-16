@@ -1,66 +1,72 @@
-<div class="row"  *ngIf="user">
-    <div class="col-4">
-        <h1>Your profile</h1>
-    </div>
-    <div class="col-8">
-        <div class="alert alert-info" *ngIf="editForm.dirty">
-            <strong>Information: </strong>You have made changes. Any unsaved changes will be lost.
+<div class="container">
+    <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3 text-center">Your profile</h1>
         </div>
-    </div>
-    <div class="col-4">
-        <div class="card">
-            <div class="card-body">
-                <div>
-                    <h2><strong class="text-capitalize">{{user.userName}}</strong></h2>
-                </div>
-                <div>
-                    <strong>First name:</strong>
-                    <p>{{user.firstName}}</p>
-                </div>
-                <div>
-                    <strong>Last name:</strong>
-                    <p>{{user.lastName}}</p>
-                </div>
-                <div>
-                    <strong>Gender:</strong>
-                    <p>{{user.gender}}</p>
-                </div>
-                <div>
-                    <strong>Date of birth:</strong>
-                    <p>{{user.dateOfBirth | date}}</p>
-                </div>
-            </div>
-            <div class="card-footer">
-                <button [disabled]="!editForm.dirty" form="editForm" (click)="updateUser()" class="btn btn-success btn-block">Save Changes</button>
+      </div>
+    <div class="row"  *ngIf="user">
+        <div class="col-4">
+        </div>
+        <div class="col-8">
+            <div class="alert alert-info" *ngIf="editForm.dirty">
+                <strong>Information: </strong>You have made changes. Any unsaved changes will be lost.
             </div>
         </div>
-    </div>
-    <div class="col-8">
-        <form id="editForm" #editForm = "ngForm">
-            <div clas="form-group">
-                <label>First name</label>
-                <input class="form-control" name="firstName" type="text"
-                [(ngModel)]="user.firstName" >
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <div>
+                        <h2><strong class="text-capitalize">{{user.userName}}</strong></h2>
+                    </div>
+                    <div>
+                        <strong>First name:</strong>
+                        <p>{{user.firstName}}</p>
+                    </div>
+                    <div>
+                        <strong>Last name:</strong>
+                        <p>{{user.lastName}}</p>
+                    </div>
+                    <div>
+                        <strong>Gender:</strong>
+                        <p>{{user.gender}}</p>
+                    </div>
+                    <div>
+                        <strong>Date of birth:</strong>
+                        <p>{{user.dateOfBirth | date}}</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button [disabled]="!editForm.dirty" form="editForm" (click)="updateUser()" class="btn btn-success btn-block">Save Changes</button>
+                </div>
             </div>
-            <div clas="form-group">
-                <label>Last name</label>
-                <input class="form-control" name="lastName" type="text"
-                [(ngModel)]="user.lastName" >
-            </div>
-            <div clas="form-group">
-                <label>Gender</label>
+        </div>
+        <div class="col-8">
+            <form id="editForm" #editForm = "ngForm">
+                <div clas="form-group">
+                    <label>First name</label>
+                    <input class="form-control" name="firstName" type="text"
+                    [(ngModel)]="user.firstName" >
+                </div>
+                <div clas="form-group">
+                    <label>Last name</label>
+                    <input class="form-control" name="lastName" type="text"
+                    [(ngModel)]="user.lastName" >
+                </div>
+                <div clas="form-group">
+                    <label>Gender</label>
+                    <div class="form-group">
+                        <select name="gender" class="form-control" [(ngModel)]="user.gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="form-group">
-                    <select name="gender" class="form-control" [(ngModel)]="user.gender">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                    </select>
+                    <label>Date of birth</label>
+                    <input type="date" class="form-control" name="dateofbirth" 
+                    [(ngModel)]="user.dateOfBirth">
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Date of birth</label>
-                <input type="date" class="form-control" name="dateofbirth" 
-                [(ngModel)]="user.dateOfBirth">
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
