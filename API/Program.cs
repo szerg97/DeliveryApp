@@ -31,7 +31,7 @@ namespace API
                 await Seed.SeedCountries(context);
                 await Seed.SeedCompanies(context, userManager);
                 await Seed.SeedOffers(context, userManager);
-
+                await Seed.SeedFeedbacks(context, userManager);
 
             }
             catch (Exception e)

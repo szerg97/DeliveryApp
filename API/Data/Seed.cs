@@ -117,6 +117,55 @@ namespace API.Data
             
         }
 
+        public static async Task SeedFeedbacks(ApplicationDbContext context, UserManager<AppUser> userManager)
+        {
+            if (await context.Feedbacks.AnyAsync()) return;
+
+            List<AppUser> users = await userManager.Users.ToListAsync();
+
+            await context.Feedbacks.AddAsync(new Feedback()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Creator = users.ToArray()[0],
+                Date = DateTime.Now,
+                Solution = "air",
+                Value = 5,
+                Text = "The air freight is a very cool thing! :)"
+            });
+
+            await context.Feedbacks.AddAsync(new Feedback()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Creator = users.ToArray()[1],
+                Date = DateTime.Now,
+                Solution = "sea",
+                Value = 4,
+                Text = "I asked for the delivery on sea and I am really satisfied!"
+            });
+
+            await context.Feedbacks.AddAsync(new Feedback()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Creator = users.ToArray()[2],
+                Date = DateTime.Now,
+                Solution = "road",
+                Value = 5,
+                Text = "The delivery was soo fast!"
+            });
+
+            await context.Feedbacks.AddAsync(new Feedback()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Creator = users.ToArray()[3],
+                Date = DateTime.Now,
+                Solution = "air",
+                Value = 5,
+                Text = "OMG so massive service :o"
+            });
+
+            await context.SaveChangesAsync();
+        }
+
         public static async Task SeedCompanies(ApplicationDbContext context, UserManager<AppUser> userManager)
         {
             if (await context.Companies.AnyAsync()) return;
