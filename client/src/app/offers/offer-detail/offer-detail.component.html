@@ -7,7 +7,7 @@
         <div class="row justify-content-center">
             <div class="card text-center col">
                 <div class="card-body">
-                    <h4 class="card-title text-warning">Your needs</h4>
+                    <h4 class="card-title text-warning">Needs</h4>
                     <p class="card-text">{{offer.text}}</p>
                     <p *ngIf="offer.status==='Pending'" class="card-text">Status: <span style="color: goldenrod; font-weight: bold;" >{{offer.status}}</span></p>
                     <p *ngIf="offer.status==='Completed'" class="card-text">Status: <span  style="color: green; font-weight: bold;">{{offer.status}}</span></p>
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="card-header">
-                <h5 class="text-warning">You</h5>
+                <h5 class="text-warning">Self</h5>
                 </div>
                     <ul class="list-group">
                     <li class="list-group-item">{{offer.creatorName}}</li>
