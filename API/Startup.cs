@@ -59,11 +59,15 @@ namespace API
 
             app.UseAuthorization();
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<OfferHub>("/offerHub");
                 endpoints.MapHub<FeedbackHub>("/feedbackHub");
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }
