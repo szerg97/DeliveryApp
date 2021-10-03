@@ -19,6 +19,7 @@ export class OfferListComponent implements OnInit {
   users: User[];
   rowNumber: any;
   currentUser: User;
+  hubUrl = environment.offerHubUrl;
   private sr: Signalr;
 
   constructor(private offerService: OfferService,
@@ -31,7 +32,7 @@ export class OfferListComponent implements OnInit {
     this.getUsers();
     this.getOffers();
 
-    this.sr = new Signalr(environment.offerHubUrl);
+    this.sr = new Signalr(this.hubUrl);
     this.sr.register('NewOffer', t => {
       this.offers.unshift(t);
       return true;

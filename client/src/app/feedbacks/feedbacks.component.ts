@@ -20,6 +20,7 @@ export class FeedbacksComponent implements OnInit {
   currentUser: User;
   feedbacks: Feedback[];
   loggedIn: boolean;
+  hubUrl = environment.feedbackHubUrl;
   private sr: Signalr;
 
   constructor(private feedbackService: FeedbackService,
@@ -34,7 +35,7 @@ export class FeedbacksComponent implements OnInit {
     this.getUsers();
     this.getCurrentUser();
 
-    this.sr = new Signalr(environment.feedbackHubUrl);
+    this.sr = new Signalr(this.hubUrl);
     this.sr.register('NewFeedback', t => {
       this.feedbacks.unshift(t);
       return true;
