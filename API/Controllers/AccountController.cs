@@ -19,14 +19,17 @@ namespace API.Controllers
     public class AccountController : BaseApiController
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppRole> _roleManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ITokenService _tokenService;
 
         public AccountController(UserManager<AppUser> userManager,
+            RoleManager<AppRole> roleManager,
             SignInManager<AppUser> signInManager,
             ITokenService tokenService)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
         }
@@ -71,8 +74,9 @@ namespace API.Controllers
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, dto.Password, false);
             if (!result.Succeeded) return Unauthorized();
+            var role = _roleManager.Roles.FirstOrDefault().Name;
             return new UserDto() { Id = user.Id, UserName = user.UserName, Token = await _tokenService.CreateToken(user),
-            FirstName = user.FirstName, LastName = user.LastName, Gender = user.Gender, DateOfBirth = user.DateOfBirth, Role = user.UserRoles.FirstOrDefault().Role.Name};
+            FirstName = user.FirstName, LastName = user.LastName, Gender = user.Gender, DateOfBirth = user.DateOfBirth, Role = role};
         }
 
         private async Task<bool> UserExists(string username)
