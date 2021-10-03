@@ -7,6 +7,7 @@ import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';
 import { FeedbackService } from '../_services/feedback.service';
 import { UserService } from '../_services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-feedbacks',
@@ -33,7 +34,7 @@ export class FeedbacksComponent implements OnInit {
     this.getUsers();
     this.getCurrentUser();
 
-    this.sr = new Signalr('https://localhost:5001/feedbackHub');
+    this.sr = new Signalr(environment.feedbackHubUrl);
     this.sr.register('NewFeedback', t => {
       this.feedbacks.unshift(t);
       return true;
